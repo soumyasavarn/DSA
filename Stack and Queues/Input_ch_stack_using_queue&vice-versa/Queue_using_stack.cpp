@@ -2,6 +2,18 @@
 #include <iomanip>
 #include <vector>
 #include <chrono>
+
+
+/*
+Check after line 103, where I have implemented all
+standard functions of QUEUE USING STACK.
+After that using chrono library, I recorded time for
+operartions varying input values from 1 - 10000
+*/
+
+/*Soumya Savarn
+ 220150031
+ */
 using namespace std;
 
 struct node{
@@ -91,16 +103,25 @@ struct Stack
 struct Queue_using_stack
 {
     struct Stack s,s_buff;
+    
+    //Directly pushes value into stack s
+    //Time Complexity: O(1)
     void enqueue(int x)
     {
         s.push(x);
     }
+    
+    /* Transfers all entries to buffer stack s_buff
+    and then pops the top element(front element of queue)
+    Then again transfers s_buff values to s */
+    //Time Complexity: O(n)
     void dequeue()
     {
         while(s.isEmpty()==0) {s_buff.push(s.on_top());s.pop();}
         s_buff.pop();
         while(s_buff.isEmpty()==0) {s.push(s_buff.on_top());s_buff.pop();}
     }
+    
     void display()
     {
         s.display();

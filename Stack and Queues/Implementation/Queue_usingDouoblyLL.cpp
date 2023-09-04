@@ -1,5 +1,16 @@
 #include <iostream>
+#include <iomanip>
 
+/*Soumya Savarn
+ 220150031
+ Implemented queue using doubly linked list
+ Some standard functions:
+ enqueue (push an element to the end)
+ dequeue (removes last element)
+ front (returns the value of the front element)
+ clear (clears the entire queue)
+ */
+ 
 using namespace std;
 
 struct node{

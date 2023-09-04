@@ -1,7 +1,18 @@
-//Soumya Savarn
-//Building Stack using doubly linked list
+#include <iostream>
+#include <iomanip>
 
-#include <bits/stdc++.h>
+
+
+/*Soumya Savarn
+ 220150031
+ Implemented stack using doubly linked list
+ Some standard functions:
+ push (push an element to the top)
+ pop (removes top element)
+ on_top (returns the value of the top element)
+ clear (clears the entire stack)
+ */
+
 using namespace std;
 
 struct node{
@@ -40,7 +51,8 @@ class Stack
     
     bool isEmpty()
     {
-      return 1 ? top == NULL:0 ;
+        if (top == NULL) return 1;
+        else return 0 ;
     }
     
     
@@ -58,7 +70,7 @@ class Stack
             
             struct node *tmp = top;
             top = top->prev;
-            top->next=NULL;
+            if (top!=NULL) top->next=NULL;
             free(tmp);
         }
     }

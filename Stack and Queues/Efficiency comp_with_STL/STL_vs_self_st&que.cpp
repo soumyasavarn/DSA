@@ -1,5 +1,5 @@
 //Soumya Savarn
-/*Efficiency comparision between STL and self implemented queues and stacks*/
+/*Efficiency comparision between STL and self implemented queues and stacks using chrono library*/
 #include <bits/stdc++.h>
 using namespace std;
 

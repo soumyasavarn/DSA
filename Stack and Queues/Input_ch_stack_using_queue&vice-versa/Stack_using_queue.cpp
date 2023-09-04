@@ -4,6 +4,18 @@
 #include <vector>
 
 
+/*
+Check after line 98, where I have implemented all
+standard functions of STACK USING QUEUE.
+After that using chrono library, I recorded time for
+operartions varying input values from 1 - 10000
+*/
+
+/*Soumya Savarn
+ 220150031
+ */
+
+
 using namespace std;
 
 struct node{
@@ -84,7 +96,15 @@ class Queue
 };
 
 struct Stack_using_queue{
+    
     Queue q,q_buff;
+    
+    /*ALGORITHM:
+     1. Push the value in the buffer
+     2. transfer the values of q to buffer
+     3. tranfer again all the values from buffer to main q
+     Time Complexity: O(n)
+     */
     void push(int x)
     {
         q_buff.enqueue(x);
@@ -100,6 +120,10 @@ struct Stack_using_queue{
         q_buff=q;
         q=temp;
     }
+    
+    /*Directly pops the front value of q
+    (which is the top element of the stack)*/
+    //Time complexity: O(1)
     void pop()
     {
         if (q.isEmpty()) {cout<<"Underflow"<<endl;return;}

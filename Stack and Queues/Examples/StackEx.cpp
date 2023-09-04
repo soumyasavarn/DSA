@@ -1,7 +1,15 @@
 //Soumya Savarn
 //Stack Example: Browser Navigation
+#include <iostream>
+#include <iomanip>
+#include <string>
+/*
+ You are free to navigate between web pages and my stack keeps
+ a record of your history and if you click "back", last
+ record gets popped and you are redirected to the top
+ element of the stack i.e, the previous page
+ */
 
-#include <bits/stdc++.h>
 using namespace std;
 
 struct node{
@@ -40,7 +48,8 @@ class Stack
     
     bool isEmpty()
     {
-      return 1 ? top == NULL:0 ;
+      if (top==NULL) return 1 ;
+      else return 0 ;
     }
     
     
@@ -58,15 +67,18 @@ class Stack
             
             struct node *tmp = top;
             top = top->prev;
-            top->next=NULL;
+            if (top!=NULL) top->next=NULL;
             free(tmp);
         }
     }
     
-    string on_top(){return top->data;}
-    
-    
-    
+    string on_top()
+    {
+       
+    if (top==NULL) return "No Sites to show";
+    else return top->data;
+        
+    }
     
     
     void display()
