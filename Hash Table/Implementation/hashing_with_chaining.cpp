@@ -1,5 +1,9 @@
 //Implementing Hash-table with chaining using doubly LL
-#include <bits/stdc++.h>
+/*Here key is generated automatically using hash function*/
+#include <iostream>
+#include <cstdlib>
+#include <iomanip>
+
 using namespace std;
 /*
 Soumya Savarn
