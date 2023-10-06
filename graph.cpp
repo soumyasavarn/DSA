@@ -1,3 +1,13 @@
+/*Soumya Savarn
+220150031
+DSAI
+*/
+
+/*Implementation of graph using adjacency list built using dynamic memory allocation.
+Planarity check is based on Euler's Theorem which rules out the possibility of planarity 
+if edges > 3 * vertices - 6 else it can't give a guarantee of non-Planarity.
+For that we need some advanced techniques using Kuratowski's Theorem or C++ Boost libraries*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -112,14 +122,28 @@ class graph{
   {
        node *t1=arr[a];
        int c=0;
-        while(t1->next!=NULL)
+       while(t1!=NULL)
         {
             c++;
             t1=t1->next;
         }
+        for (int i=1;i<=n;i++)
+        {
+            if (i==a) continue;
+            node *t=arr[i];
+            while (t!=0)
+            {
+                if (t->data==a) 
+                {
+                t->data=t->next->data;
+                t->next=t->next->next;  
+                break;
+                }
+                t=t->next;
+            }
+        }
         ncopy-=c;
-        arr[a]==NULL;
-        
+        arr[a]=NULL;
   }
   
   void planarity()
@@ -195,6 +219,11 @@ int main()
 
     }
     
+    cout<<"Thank You !!"<<endl;
 
     return 0;
 }
+/*Soumya Savarn
+220150031
+DSAI
+*/
