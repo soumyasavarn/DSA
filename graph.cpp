@@ -6,12 +6,12 @@ class graph{
   public:
   
   class node{
-     public:
+    public:
     int data;
     node *next;
   };
-  int n;
-  int m;
+  int n,ncopy;
+  int m,mcopy;
   node **arr;
   
   void add_edge (int a,int b)
@@ -25,7 +25,7 @@ class graph{
         t22->next=NULL;
         t22->data=a;
         
-        if (t1==NULL) t1=t11;
+        if (t1==NULL) arr[a]=t11;
         else {
         while(t1->next!=NULL)
         {
@@ -34,7 +34,7 @@ class graph{
         t1->next=t11;
         }
         
-        if (t2==NULL) t2=t22;
+        if (t2==NULL) arr[b]=t22;
         else {
         while(t2->next!=NULL)
         {
@@ -55,8 +55,9 @@ class graph{
       cin>>n;
       cout<<"Enter number of edges: ";
       cin>>m;
-      arr =new node *[n+1];
-      
+      arr =new node *[n+4];
+      ncopy=n;
+      mcopy=m;
       for (int i=1;i<=n;i++)
       {
           arr[i]=NULL;
@@ -68,32 +69,77 @@ class graph{
           int x,y;
           cin>>x>>y;
           add_edge(x,y);
-          
+        //   cout<<"done";
       } 
+          
   }
   
-  void display_vertices()
+   void remove_edge (int a,int b)
+  {
+      
+        node *t1=arr[a],*t2=arr[b];
+       
+        
+        
+        while(t1->next!=NULL)
+        {
+            if (t1->data==b) 
+            {
+                t1->data=t1->next->data;
+                t1->next=t1->next->next;
+                break;
+            }
+            t1=t1->next;
+        }
+                
+        while(t2->next!=NULL)
+        {
+            if (t2->data==a) 
+            {
+                t2->data=t2->next->data;
+                t2->next=t2->next->next;  
+                break;
+            }
+            t2=t2->next;
+        }
+        mcopy--;
+        
+        
+        
+  }
+  
+  void remove_vertex(int a)
+  {
+       node *t1=arr[a];
+       int c=0;
+        while(t1->next!=NULL)
+        {
+            c++;
+            t1=t1->next;
+        }
+        ncopy-=c;
+        arr[a]==NULL;
+        
+  }
+  
+  void planarity()
+  {
+      if (mcopy>3*ncopy-6) cout<<"Definately Non-Planar"<<endl;
+      else cout<<"Maybe Planar"<<endl;
+  }
+  
+  void display_graph()
   {
       int c=0;
-      for (int i=1;i<=n;i++) if (arr[i]->next!=NULL) {cout<<arr[i]->data<<endl;c++;}
-      cout<<"Total: "<<c<<endl;
-  }
-  
-//   void display_all()
-//   {
-//       for (int i=1;i<=n;i++) {
-//           if (x.next!=NULL) {
-//               node *t=x;
-//               cout<<t->data<<": ";
-//               while(t!=NULL) cout<<t->data<<" ";
-//               cout<<endl;
-//           }
+      for (int i=1;i<=n;i++) if (arr[i]!=NULL) {
+          node *trav=arr[i];
+          cout<<i<<": ";
+          while(trav!=0) {cout<<trav->data<<" ";trav=trav->next;}
+          cout<<endl;
           
-//       }
-//   }
-      
-  
-  
+         }
+     
+  }
 };
 
 
@@ -101,7 +147,54 @@ class graph{
 int main()
 {
     graph g;
-    g.display_vertices();
+    cout<<"Graph inintialised successfully !"<<endl;
+    
+    while(1)
+    {
+        cout<<"Choose from below"<<endl;
+        cout<<"1. Add an edge"<<endl;
+        cout<<"2. Remove an edge"<<endl;
+        cout<<"3. Remove a vertex"<<endl;
+        cout<<"4. Display the graph"<<endl;
+        cout<<"5. Check for Planarity (Euler's Theorem)"<<endl;
+        cout<<"6. Exit"<<endl;
+        int k;
+        cin>>k;
+        if (k==1) 
+        {
+        cout<<"Enter edge pair: "; 
+        int a,b;
+        cin>>a>>b;
+        g.add_edge(a,b);
+        }
+        if (k==2) 
+        {
+        cout<<"Enter edge pair: "; 
+        int a,b;
+        cin>>a>>b;
+        g.remove_edge(a,b);
+        }
+        if (k==3) 
+        {
+        cout<<"Enter vertex: "; 
+        int a;
+        cin>>a;
+        g.remove_vertex(a);
+        }
+        if (k==4)
+        {
+            g.display_graph();
+        }
+        if (k==5)
+        {
+            g.planarity();
+        }
+            
+        if (k==6) break;
+        
+
+    }
+    
 
     return 0;
 }
