@@ -56,7 +56,15 @@ class hash_table{
        if (trav==0) {cout<<"Not found !!"<<endl; return;}
        while(trav!= NULL) {if (trav->data==n) break; trav=trav->next;}
        if (trav==0) {cout<<"Not found !!"<<endl; return;}
-       if (trav->prev==NULL) {a[key]=trav->next; if (trav->next!=NULL) trav->next->prev=NULL; free(trav);return;}
+        
+       if (trav->prev==NULL)
+       {
+       a[key]=trav->next;
+       if (trav->next!=NULL) trav->next->prev=NULL;
+       free(trav);
+       return;
+       }
+           
        node *curr =trav;
        trav=trav->prev;
        trav->next=curr->next;
