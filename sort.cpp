@@ -28,19 +28,19 @@ void selection_sort(int a[],int n)
         smallest_index=i;
         for (int j=i;j<n;j++)
         {
-            if (a[j]<smallest_element) 
+            if (a[j]<=smallest_element) 
             {
             smallest_element=a[j];
             smallest_index=j;
             }
         }
         swap(a[smallest_index],a[i]);
-        
-        
-        
     }
         
 }
+        
+        
+        
 
 void insertion_sort(int a[],int n)
 {
@@ -62,6 +62,37 @@ void bubble_sort(int a[],int n)
     
     }
 }
+int partition (int a[],int l,int r)
+{
+	int ptr=l-1;
+	
+	for (int i=l;i<r;i++)
+	{
+		if (a[i]<a[r])
+		{
+			ptr++;
+			swap(a[i],a[ptr]);
+		
+		}
+	
+	}
+	
+	swap(a[r],a[ptr+1]);
+	return ptr+1;
+}
+
+
+void quicksort(int a[],int l,int r)
+{
+	if (l<r)
+	{
+		int part_ind=partition(a,l,r);
+		quicksort(a,l,part_ind-1);
+		quicksort(a,part_ind+1,r);
+	}	
+}
+	
+	
 
 
 int main()
@@ -98,7 +129,7 @@ int main()
     cout<<"1. Selection Sort"<<endl;
     cout<<"2. Insertion Sort"<<endl;
     cout<<"3. Bubble Sort"<<endl;
-    
+    cout<<"4. Quicksort"<<endl;
     
     int choose;
     cin>>choose;
@@ -123,6 +154,15 @@ int main()
         disp(a,n);
 
     }
+    
+    else if (choose==4)
+    {
+        quicksort(a,0,n-1);
+        cout<<"Your sorted array: "<<endl;
+        disp(a,n);
+
+    }
+    
     
     cout<<"Do you wish to continue? (Y/N)"<<endl;
     char x;
