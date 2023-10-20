@@ -190,21 +190,21 @@ void radix(int a[],int n)
 
 void bucketsort(int a[], int n)
 {
-    int min=INT_MAX;
+    int max=INT_MIN;
 
-    for (int i=0;i<n;i++) if (a[i]<min) min=a[i];
-    vector<int> b[n/min+1];
+    for (int i=0;i<n;i++) if (a[i]>max) max=a[i];
+    vector<int> b[max/10+1];
 
     for (int i = 0; i < n; i++) {
         int bi = n / a[i];
         b[bi].push_back(a[i]);
     }
 
-    for (int i = 0; i < n/min +1; i++)
+    for (int i = 0; i < max/10 +1; i++)
         sort(b[i].begin(), b[i].end());
 
     int index = 0;
-    for (int i = 0; i < n/min +1; i++)
+    for (int i = 0; i < max/10 +1; i++)
         for (int j = 0; j < b[i].size(); j++)
             a[index++] = b[i][j];
 }

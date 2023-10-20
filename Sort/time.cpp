@@ -51,13 +51,13 @@ void time_analysis()
      S_merge = std::chrono::system_clock::now();
     mergesort(a,0,n-1);
     E_merge = std::chrono::system_clock::now();
-    for (int i=0;i<n;i++) a[i]=rand();
+    for (int i=0;i<n;i++) a[i]=rand()%100000;
 
     std::chrono::time_point<std::chrono::system_clock> S_radix, E_radix;
      S_radix = std::chrono::system_clock::now();
     radix(a,n);
      E_radix = std::chrono::system_clock::now();
-    for (int i=0;i<n;i++) a[i]=rand();
+    for (int i=0;i<n;i++) a[i]=rand()%100000;
 
     std::chrono::time_point<std::chrono::system_clock> S_bucket, E_bucket;
      S_bucket = std::chrono::system_clock::now();
